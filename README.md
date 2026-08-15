@@ -1,25 +1,65 @@
-# amazon_backend_fixed
+# Amazon-Like E-Commerce Backend
 
-A ready-to-run educational Amazon-inspired FastAPI backend.
+A professional RESTful e-commerce backend built with Python and FastAPI. This project provides essential e-commerce functionality including user authentication, product management, shopping cart, order processing, inventory management, and payments.
 
-## Start
-From this folder run:
+This is an independent educational and portfolio project inspired by common e-commerce platforms and is not affiliated with Amazon.
 
-```powershell
-docker compose down -v
-docker compose up --build
-```
+## Features
 
-Then open **http://localhost:8000/docs**
+- User registration and login
+- JWT-based authentication
+- Role-based authorization
+- Customer, Seller, and Admin roles
+- Product management
+- Product search, filtering, sorting, and pagination
+- Shopping cart management
+- Order placement and order history
+- Inventory and stock management
+- Mock payment processing
+- PostgreSQL database
+- Redis integration
+- Alembic database migrations
+- Docker and Docker Compose support
+- Pytest testing
+- Interactive Swagger API documentation
 
-The database and demo data initialize automatically. No Alembic command or manual seed command is required for this Docker version.
+## Tech Stack
 
-Demo seller:
-`seller@example.com` / `Seller@12345`
+- Python 3.12
+- FastAPI
+- PostgreSQL
+- SQLAlchemy 2.x
+- Pydantic
+- JWT
+- bcrypt
+- Alembic
+- Redis
+- Pytest
+- Docker
+- Docker Compose
 
-Demo admin:
-`admin@example.com` / `Admin@12345`
+## Project Structure
 
-Customer registration is available at `POST /api/v1/auth/register`.
-
-The `userrole`, `orderstatus`, and `paymentstatus` PostgreSQL ENUM types are created safely and are not recreated by SQLAlchemy, preventing the previous `DuplicateObject` error.
+```text
+amazon_backend/
+│
+├── app/
+│   ├── core/
+│   ├── database/
+│   ├── models/
+│   ├── schemas/
+│   ├── routers/
+│   ├── services/
+│   └── main.py
+│
+├── alembic/
+├── scripts/
+├── tests/
+│
+├── .env.example
+├── .gitignore
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── alembic.ini
+└── README.md
