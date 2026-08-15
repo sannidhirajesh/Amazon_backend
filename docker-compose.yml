@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: amazon_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U postgres -d amazon_db"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+  backend:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/amazon_db
+      SECRET_KEY: change-this-development-secret
+      ACCESS_TOKEN_EXPIRE_MINUTES: 60
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+volumes:
+  postgres_data:
